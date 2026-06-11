@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Sorting Matrix - Science Carnival</title>
+    <link rel="stylesheet" href="sorter.css">
+</head>
+<body>
+
+    <header>
+        <h1>ALGORITHM VISUALIZER</h1>
+        <div class="subtitle">Watch computer logic organize data structures in real-time</div>
+    </header>
+
+    <div id="game-container">
+        <div id="array-container"></div>
+
+        <div class="controls">
+            <button class="btn secondary" id="random-btn">Generate Data</button>
+            <button class="btn" id="sort-btn">Execute Sort</button>
+        </div>
+
+        <div class="slider-panel">
+            <label for="speed">Processing Delay: <span id="speed-val">50ms</span></label>
+            <input type="range" id="speed" min="5" max="200" value="50">
+        </div>
+    </div>
+
+    <script src="sorter.js"></script>
+</body>
+</html>

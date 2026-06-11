@@ -1,0 +1,22 @@
+{
+    "ROBOT": "A programmable mechanical machine that can perform automated physical tasks.",
+    "LOGIC": "The strict, step-by-step rules a computer follows to make decisions (If/Then).",
+    "MOUSE": "A hand-controlled hardware input device used to move a cursor on a monitor.",
+    "STACK": "A data structure where elements are layered on top of each other (Last In, First Out).",
+    "PIXEL": "The tiny individual square of colored light that builds up a digital screen image.",
+    "ARRAY": "An ordered list of items stored side-by-side inside your computer code.",
+    "MODEM": "A peripheral device that connects your local network infrastructure to the internet.",
+    "CLOUD": "Remote computer servers across the world used to store your files and host web apps.",
+    "CACHE": "Super fast temporary storage space used to hold data so apps can load quicker.",
+    "INPUT": "Any command, file, or keypress data you feed into a computer program from outside.",
+    "BUILD": "Compiling raw human-readable source code into an executable application layer.",
+    "INDEX": "The exact location address of an item inside an array (computers count from 0!).",
+    "CYBER": "Anything relating to digital networks, information technology, or security layers.",
+    "PHONE": "A compact mobile computer optimized for wireless networks and communication.",
+    "CLICK": "The action of pressing down on a mouse switch to execute an interactive logic macro.",
+    "PRINT": "A command that instructs software to textually output data to the user console.",
+    "DRIVE": "Physical storage hardware medium where your operational system files live.",
+    "TOUCH": "Interacting with a screen layer using the minor electrical field of your fingertips.",
+    "SMART": "Devices linked together on a network to run automated background logic tasks.",
+    "CABLE": "Copper wires or optical fibers bundled together to carry data signals between electronics."
+}
