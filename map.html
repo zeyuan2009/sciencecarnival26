@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hand-Tracked Map Terminal</title>
+    <link rel="stylesheet" href="map.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <div id="hud-container">
+        <h1>SPATIAL MAP CONTROLLER</h1>
+        <div class="status-line">System Status: <span id="sys-status" style="color:var(--radar-green)">INITIALIZING</span></div>
+        <div class="telemetry-box">
+            <div class="metric">Target Lock: <span id="tracking-active" class="alert">NO SIGNAL</span></div>
+            <div class="metric">Active Gesture: <span id="current-gesture">NONE</span></div>
+            <div class="metric">Vector ΔX/ΔY: <span id="vector-delta">0.00 / 0.00</span></div>
+            <div class="metric">System Uptime: <span id="system-clock">0.0s</span></div>
+        </div>
+    </div>
+
+    <div id="gesture-prompt">Click anywhere to launch full-screen camera view</div>
+
+    <script src="map.js"></script>
+</body>
+</html>

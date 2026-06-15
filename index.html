@@ -3,49 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science Carnival - Project Hub</title>
+    <title>AI Spatial & Interactive Kiosk Hub</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-    <header>
-        <h1>Select a project</h1>
-        <div class="subtitle">Select a module below to view a demo project!</div>
-    </header>
+    <div id="bg-glow"></div>
 
-    <main id="hub-container">
-        <a href="wordle.html" class="module-card">
-            <div class="icon-wrapper">🔤</div>
-            <h2>Wordle Game</h2>
-            <p>The Classic Wordle game from New York Times! Shows how a computer compares conditions.</p>
-            <span class="badge">String Analysis</span>
-        </a>
+    <main id="kiosk-container">
+        <header>
+            <h1>CONVENTION EXHIBITION TERMINAL</h1>
+            <p class="subtitle">SYSTEM CORE OPERATIONAL // SELECT SIMULATION MODULE</p>
+        </header>
 
-        <a href="ttt.html" class="module-card">
-            <div class="icon-wrapper">🤖</div>
-            <h2>Tic-Tac-Toe</h2>
-            <p>A simple game used to show how computer algorithms can calculate all the best moves.</p>
-            <span class="badge">Predictive Logic</span>
-        </a>
+        <section class="grid-container">
+            
+            <a href="map.html" class="project-card map-card">
+                <div class="card-edge"></div>
+                <div class="card-content">
+                    <div class="tag">AI HARDWARE INTEGRATION</div>
+                    <h3>SPATIAL MAPPER</h3>
+                    <p>Navigate a global digital canvas using precise index finger pointing, OK signs, and fist gesture kinematics.</p>
+                    <span class="status-indicator">READY to LAUNCH</span>
+                </div>
+            </a>
 
-        <a href="sorter.html" class="module-card">
-            <div class="icon-wrapper">📊</div>
-            <h2>Sorting Engine</h2>
-            <p>A mesmerizing view of how a computer can sort and manage data into ascending order.</p>
-            <span class="badge">Data Management</span>
-        </a>
+            <a href="code.html" class="project-card crystal-card">
+                <div class="card-edge"></div>
+                <div class="card-content">
+                    <div class="tag">WEBGL GRAPHICS ENGINE</div>
+                    <h3>GEOMETRIC 3D ORB</h3>
+                    <p>Manipulate a high-fidelity 3D crystal matrix and particle cloud using open palm drags and kinetic scale pinches.</p>
+                    <span class="status-indicator">READY to LAUNCH</span>
+                </div>
+            </a>
 
-        <a href="art.html" class="module-card">
-            <div class="icon-wrapper">🕸️</div>
-            <h2>Vector Mesh</h2>
-            <p>Manipulate how simulated particles travel throughout space with your cursor!</p>
-            <span class="badge">Physics Simulation</span>
-        </a>
+            <a href="wordle.html" class="project-card wordle-card">
+                <div class="card-edge"></div>
+                <div class="card-content">
+                    <div class="tag">ALGORITHMIC GAME MATRIX</div>
+                    <h3>WORDLE REPLICANT</h3>
+                    <p>A linguistic logical deduction processor. Guess the secret hidden word within six structured baseline attempts.</p>
+                    <span class="status-indicator">ONLINE</span>
+                </div>
+            </a>
+
+            <a href="art.html" class="project-card art-card">
+                <div class="card-edge"></div>
+                <div class="card-content">
+                    <div class="tag">CREATIVE CODING LAYER</div>
+                    <h3>GENERATIVE ART</h3>
+                    <p>Execute synthetic procedural graphic renders dynamically drawn onto an interactive local canvas.</p>
+                    <span class="status-indicator">ONLINE</span>
+                </div>
+            </a>
+
+            <a href="sorter.html" class="project-card sorter-card">
+                <div class="card-edge"></div>
+                <div class="card-content">
+                    <div class="tag">COMPUTER SCIENCE ARCHITECTURE</div>
+                    <h3>DATA SORTER</h3>
+                    <p>Watch standard algorithms visually re-organize chaotic linear bar metrics in real time.</p>
+                    <span class="status-indicator">ONLINE</span>
+                </div>
+            </a>
+
+            <a href="ttt.html" class="project-card ttt-card">
+                <div class="card-edge"></div>
+                <div class="card-content">
+                    <div class="tag">DISCRETE COMBINATORICS</div>
+                    <h3>TIC-TAC-TOE MATRIX</h3>
+                    <p>Engage in a vintage 3x3 strategic logical alignment exercise against local operators.</p>
+                    <span class="status-indicator">ONLINE</span>
+                </div>
+            </a>
+
+        </section>
     </main>
 
-    <footer>
-        <p>Science & Technology Carnival Booth Platform Module &copy; 2026</p>
-    </footer>
-
+    <script src="index.js"></script>
 </body>
 </html>

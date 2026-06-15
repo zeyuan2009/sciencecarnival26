@@ -1,148 +1,153 @@
 :root {
-    /* Cohesive Light Mode Palette Matrix */
-    --bg-main: #f4f6f9;
-    --bg-panel: #ffffff;
-    --text-main: #1a1f2c;
-    --text-muted: #64748b;
-    --accent-blue: #2563eb;
-    --border-grid: #d3d6da;
-    --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.08);
+    --bg-deep: #030712;
+    --neon-green: #10b981;
+    --dark-slate: #1f2937;
+    --text-main: #f3f4f6;
+    --tag-blue: #3b82f6;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-body {
-    background-color: var(--bg-main);
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-deep);
     color: var(--text-main);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 30px 20px;
+    overflow-x: hidden;
+}
+
+/* Atmospheric Background Glow Elements */
+#bg-glow {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.05), transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+#kiosk-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
 header {
     text-align: center;
-    width: 100%;
-    max-width: 800px;
-    border-bottom: 2px solid var(--border-grid);
-    padding-bottom: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    border-bottom: 1px dashed var(--dark-slate);
+    padding-bottom: 20px;
 }
 
-h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: var(--accent-blue);
+header h1 {
+    font-size: 2.2rem;
+    color: var(--neon-green);
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 .subtitle {
-    font-size: 1rem;
-    color: var(--text-muted);
-    margin-top: 6px;
-    font-weight: 500;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 8px;
+    letter-spacing: 1px;
 }
 
-/* 2x2 Responsive Navigation Grid Layout Dashboard */
-#hub-container {
+/* Grid Framework Architecture */
+.grid-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    width: 100%;
-    max-width: 800px;
-    flex-grow: 1;
-    align-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 25px;
 }
 
-/* Module Button Cards Block Styling */
-.module-card {
-    background-color: var(--bg-panel);
-    border: 2px solid var(--border-grid);
-    border-radius: 16px;
-    padding: 25px;
+/* Cyberpunk Card Component Configurations */
+.project-card {
+    position: relative;
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid var(--dark-slate);
+    border-radius: 8px;
     text-decoration: none;
-    color: var(--text-main);
+    color: inherit;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    box-shadow: var(--shadow-soft);
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
-                border-color 0.2s ease, 
-                box-shadow 0.2s ease;
-    cursor: pointer;
 }
 
-.icon-wrapper {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
+.card-edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--dark-slate);
+    transition: background 0.3s ease;
 }
 
-.module-card h2 {
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    transition: color 0.2s ease;
+.card-content {
+    padding: 25px;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.module-card p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.45;
+.tag {
+    font-size: 0.65rem;
+    font-weight: bold;
+    color: var(--tag-blue);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.project-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.project-card p {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    line-height: 1.5;
     margin-bottom: 20px;
     flex-grow: 1;
 }
 
-/* Technical Identity Tag Flags */
-.badge {
-    font-size: 0.75rem;
-    font-weight: 700;
+.status-indicator {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: var(--neon-green);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 4px 8px;
+    border-radius: 4px;
+    align-self: flex-start;
     text-transform: uppercase;
-    background-color: var(--bg-main);
-    color: var(--text-muted);
-    padding: 6px 12px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
+    background: rgba(16, 185, 129, 0.05);
 }
 
-/* Desktop Hover Interactive Physics Responses */
-.module-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent-blue);
-    box-shadow: var(--shadow-hover);
+/* Reactive Interaction Hover States */
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-green);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(16, 185, 129, 0.1);
 }
 
-.module-card:hover h2 {
-    color: var(--accent-blue);
+.project-card:hover .card-edge {
+    background: var(--neon-green);
 }
 
-.module-card:active {
-    transform: translateY(-1px);
-}
-
-footer {
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-top: 30px;
-    width: 100%;
-}
-
-/* Mobile responsive single-column layout overrides overrides */
-@media (max-width: 600px) {
-    #hub-container {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
+.project-card:hover h3 {
+    color: var(--neon-green);
 }

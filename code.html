@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Spatial Vector Control Terminal</title>
+    <link rel="stylesheet" href="code.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <canvas id="webgl-canvas"></canvas>
+
+    <div id="hud-container">
+        <h1>SPATIAL INTERACTION TERMINAL</h1>
+        <div class="status-line">System Status: <span id="sys-status" style="color:var(--radar-green)">INITIALIZING</span></div>
+        <div class="telemetry-box">
+            <div class="metric">Target Lock: <span id="tracking-active" class="alert">NO SIGNAL</span></div>
+            <div class="metric">Active Gesture: <span id="current-gesture">NONE</span></div>
+            <div class="metric">Vector ΔX/ΔY: <span id="vector-delta">0.00 / 0.00</span></div>
+            <div class="metric">System Uptime: <span id="system-clock">0.0s</span></div>
+        </div>
+    </div>
+
+    <div id="gesture-prompt">Click anywhere to launch full-screen camera view</div>
+
+    <script src="code.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPS Stress Tester</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars */
+            background-color: #111;
+            color: white;
+        }
+        #ui {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        }
+        .stat {
+            margin-bottom: 10px;
+        }
+        #controls {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #autoBtn.off {
+            background: #d32f2f;
+        }
+        #autoBtn.off:hover {
+            background: #b71c1c;
+        }
+        #nukeBtn {
+            background: #9c27b0; /* Purple color for the ultimate crash button */
+            font-size: 16px;
+        }
+        #nukeBtn:hover {
+            background: #7b1fa2;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <div class="stat" style="font-size: 28px; font-weight: bold;">FPS: <span id="fpsDisplay">0</span></div>
+        <div class="stat" style="font-size: 20px;">Blocks: <span id="blockCount">0</span></div>
+        <div id="controls">
+            <button id="addBtn">Spawn 5,000 Blocks</button>
+            <button id="nukeBtn">☢️ NUKE 💥</button>
+            <button id="autoBtn">Auto-Spawn: ON</button>
+        </div>
+        <div style="margin-top: 15px; font-size: 12px; color: #aaa; max-width: 200px;">
+            Warning: The auto-spawn is extremely fast. Clicking the NUKE button will result in an immediate memory crash.
+        </div>
+    </div>
+    
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d', { alpha: false }); // Optimize for speed
+        const fpsDisplay = document.getElementById('fpsDisplay');
+        const blockCountDisplay = document.getElementById('blockCount');
+        const addBtn = document.getElementById('addBtn');
+        const nukeBtn = document.getElementById('nukeBtn');
+        const autoBtn = document.getElementById('autoBtn');
+
+        // Size canvas to window
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let blocks = [];
+        let lastTime = performance.now();
+        let frameCount = 0;
+        let fps = 0;
+        let autoSpawn = false;
+
+        // Block class for rendering and physics
+        class Block {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                // Random velocity
+                this.vx = (Math.random() - 0.5) * 5;
+                this.vy = (Math.random() - 0.5) * 5;
+                // Random size between 4 and 12 pixels
+                this.size = Math.random() * 8 + 4;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Simple wall bouncing
+                if (this.x <= 0 || this.x + this.size >= canvas.width) this.vx *= -1;
+                if (this.y <= 0 || this.y + this.size >= canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = '#00FF00'; // Pure green
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+            }
+        }
+
+        // Function to bulk-add blocks
+        function spawnBlocks(amount) {
+            for (let i = 0; i < amount; i++) {
+                blocks.push(new Block());
+            }
+            blockCountDisplay.innerText = blocks.length.toLocaleString();
+        }
+
+        // Initialize with a baseline amount
+        spawnBlocks(500);
+
+        // Button Event Listeners
+        addBtn.addEventListener('click', () => spawnBlocks(5000));
+        
+        nukeBtn.addEventListener('click', () => spawnBlocks(99999999999));
+        
+        autoBtn.addEventListener('click', () => {
+            autoSpawn = !autoSpawn;
+            if (autoSpawn) {
+                autoBtn.innerText = "Auto-Spawn: ON";
+                autoBtn.classList.remove('off');
+            } else {
+                autoBtn.innerText = "Auto-Spawn: OFF";
+                autoBtn.classList.add('off');
+            }
+        });
+
+        // Main animation loop
+        function animate() {
+            const now = performance.now();
+            frameCount++;
+
+            // Calculate and display FPS every 1000ms (1 second)
+            if (now - lastTime >= 1000) {
+                fps = frameCount;
+                fpsDisplay.innerText = fps;
+                frameCount = 0;
+                lastTime = now;
+
+                // Color-code the FPS display
+                if (fps >= 50) {
+                    fpsDisplay.style.color = '#00FF00';
+                } else if (fps >= 30) {
+                    fpsDisplay.style.color = '#FFA500'; // Orange warning
+                } else {
+                    fpsDisplay.style.color = '#FF0000'; // Red critical
+                }
+            }
+
+            // Paint background over the previous frame
+            ctx.fillStyle = '#111';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Fast auto-spawn: generate 500 blocks per frame
+            if (autoSpawn) {
+                spawnBlocks(500);
+            }
+
+            // Calculate physics and draw every block
+            for (let i = 0; i < blocks.length; i++) {
+                blocks[i].update();
+                blocks[i].draw();
+            }
+
+            // Loop
+            requestAnimationFrame(animate);
+        }
+
+        // Start loop
+        animate();
+
+        // Handle window resizing
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
